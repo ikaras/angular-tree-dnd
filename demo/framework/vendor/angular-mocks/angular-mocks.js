@@ -997,7 +997,7 @@ angular.mock.dump = function(object) {
   function MyController($scope, $http) {
     var authToken;
 
-    $http.get('/auth.py').success(function(data, status, headers) {
+    $http.get('/auth.py').then(function(data, status, headers) {
       authToken = headers('A-Token');
       $scope.user = data;
     });
@@ -1006,7 +1006,7 @@ angular.mock.dump = function(object) {
       var headers = { 'Authorization': authToken };
       $scope.status = 'Saving...';
 
-      $http.post('/add-msg.py', message, { headers: headers } ).success(function(response) {
+      $http.post('/add-msg.py', message, { headers: headers } ).then(function(response) {
         $scope.status = '';
       }).error(function() {
         $scope.status = 'ERROR!';

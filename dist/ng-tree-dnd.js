@@ -95,7 +95,21 @@
         }]
 );
 
-angular.module('ntt.TreeDnD')    .directive(    'treeDndNodeHandle', function () {        return {            restrict: 'A',            scope:    true,            link:     function (scope, element, attrs) {                scope.$type = 'TreeDnDNodeHandle';                if (scope.$class.handle) {                    element.addClass(scope.$class.handle);                }            }        };    });
+angular.module('ntt.TreeDnD')
+    .directive(
+    'treeDndNodeHandle', function () {
+        return {
+            restrict: 'A',
+            scope:    true,
+            link:     function (scope, element, attrs) {
+                scope.$type = 'TreeDnDNodeHandle';
+                if (scope.$class.handle) {
+                    element.addClass(scope.$class.handle);
+                }
+            }
+        };
+    }
+);
 
 angular.module('ntt.TreeDnD')
     .directive(
@@ -1325,7 +1339,7 @@ function fnInitTreeDnD($timeout, $http, $compile, $parse, $window, $document, $t
                             return $http.get(
                                 treeInclude,
                                 {cache: $templateCache}
-                            ).success(
+                            ).then(
                                 function (data) {
                                     data              = data.trim();
                                     //scope.templateNode = data;
@@ -1411,7 +1425,7 @@ function fnInitTreeDnD($timeout, $http, $compile, $parse, $window, $document, $t
                     $http.get(
                         attrs.templateUrl || $TreeDnDTemplate.getPath(),
                         {cache: $templateCache}
-                    ).success(
+                    ).then(
                         function (data) {
                             data         = angular.element(data.trim());
                             promiseCheck = checkTreeTable(data, scope);

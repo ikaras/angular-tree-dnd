@@ -1051,7 +1051,7 @@ function fnInitTreeDnD($timeout, $http, $compile, $parse, $window, $document, $t
                             return $http.get(
                                 treeInclude,
                                 {cache: $templateCache}
-                            ).success(
+                            ).then(
                                 function (data) {
                                     data              = data.trim();
                                     //scope.templateNode = data;
@@ -1137,7 +1137,7 @@ function fnInitTreeDnD($timeout, $http, $compile, $parse, $window, $document, $t
                     $http.get(
                         attrs.templateUrl || $TreeDnDTemplate.getPath(),
                         {cache: $templateCache}
-                    ).success(
+                    ).then(
                         function (data) {
                             data         = angular.element(data.trim());
                             promiseCheck = checkTreeTable(data, scope);
