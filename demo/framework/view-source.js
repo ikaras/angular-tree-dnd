@@ -33,7 +33,7 @@ app.directive(
                     angular.forEach(
                         scope.models.types, function (type) {
                             $http.get(scope.demoName + '/' + scope.demoName + '.' + type.extension)
-                                .then(
+                                .success(
                                 function (httpResponse) {
                                     type.source = httpResponse.data;
                                     $timeout(Prism.highlightAll, 0);
